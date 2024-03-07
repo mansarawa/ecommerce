@@ -1,6 +1,7 @@
 .container{
-    background-color: red;
+   
     display: flex;
+    color: #201a44;
     width: 100%;
 }
 .menus{
@@ -22,7 +23,7 @@
    /* padding-left: 30%; */
    float: right;
    text-decoration: none;
-   color: whitesmoke;
+   color:   #201a44;;
    display: flex;
    justify-content: flex-end;
 }
@@ -32,7 +33,7 @@
     font-size: 20px;
 }
 .item{
-    color: whitesmoke;
+    color: #201a44;
     text-decoration: none;
 }
 .burger{
