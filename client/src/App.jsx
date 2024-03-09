@@ -4,6 +4,7 @@ import Navbar from './layout/Navbar'
 import Login from './layout/Login'
 import Achivement from './layout/Achivement'
 import Homeslider from './layout/Homeslider'
+import Register from './layout/Register'
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
       <Navbar/>
         <Routes>
         <Route path='/login' element={<Login/>}/>
+        <Route path='/register' element={<Register/>}/>
         <Route path='/' element={<Homeslider/>}/>
         </Routes>
       </BrowserRouter>

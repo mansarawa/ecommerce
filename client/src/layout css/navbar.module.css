@@ -39,14 +39,26 @@
 .burger{
     display: none;
 }
-@media screen and(min-width:400px)  and (max-width:600px) {
+.response{
+    display: none;
+}
+@media screen  and (max-width:600px) {
     .burger{
         display: block;
+        margin-right: 4%;
+        align-items: center;
+        display: flex;
     }
-    .li{
+    .response{
+        display: block;
+        height: 50%;
+        display: flex;
+    }
+    .ul{
         display: none;
     }
     .container{
-        background-color: aqua;
+        width: 100%;
     }
+    
 }

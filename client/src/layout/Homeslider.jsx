@@ -24,7 +24,7 @@ function Homeslider() {
     <div>
         <div className="slider-container">
       <div className="slide">
-        <img src={currentImageIndex} style={{width:'100%',minHeight:'100vh',maxHeight:'100vh'}} alt={`Slide ${currentImageIndex}`} />
+        <img src={currentImageIndex} style={{width:'100%',minHeight:'100%',maxHeight:'100vh'}} alt={`Slide ${currentImageIndex}`} />
       </div>
     </div>
     <Achivement/>
