@@ -3,6 +3,7 @@ import Achivement from './Achivement';
 import monday from '../assets/cyber-monday.jpg'
 import tuesday from '../assets/electronics-sale.jpg'
 import wednesday from '../assets/fashion-sale.jpg'
+import Product from './Product';
 function Homeslider() {
     const [currentImageIndex, setCurrentImageIndex] = useState(monday);
     const slider=()=>{
@@ -28,6 +29,7 @@ function Homeslider() {
       </div>
     </div>
     <Achivement/>
+    <Product/>
     </div>
   )
 }

@@ -25,6 +25,8 @@ function Login() {
       if (result.success) {
          navigate('/')
         console.log('success')
+        localStorage.setItem('user',JSON.stringify(result.user))
+        console.log(result.user)
       } else {
         console.log('failed')
       }

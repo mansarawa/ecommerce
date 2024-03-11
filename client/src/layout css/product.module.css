@@ -1,0 +1,11 @@
+.container{
+   padding-top: 2%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.box{
+   width: 30%;
+   margin-left: 3%;
+    flex-wrap: wrap;
+}
