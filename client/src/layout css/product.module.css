@@ -7,5 +7,34 @@
 .box{
    width: 30%;
    margin-left: 3%;
+   margin-top: 2%;
     flex-wrap: wrap;
+    position: relative;
+
+}
+.footerbtn{
+    position: relative;
+    display: flex;
+    width: 100%;
+    
+    align-items: center;
+    text-align: center;
+    
+}
+.cart{
+    text-decoration: none;
+    padding-bottom: 2%;
+    padding-top: 2%;
+    background-color: #fb641b;
+    color: white;
+    width: 50%;
+
+}
+.buy{
+    text-decoration: none;
+    color: white;
+    padding-top: 2%;
+    width: 50%;
+    padding-bottom: 2%;
+    background-color:#201a44;
 }

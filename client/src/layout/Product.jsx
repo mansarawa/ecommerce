@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import Pro from '../layout css/product.module.css'
+import { FaShoppingCart } from "react-icons/fa";
 function Product() {
     const [product, setProduct] = useState([])
     const fetchData=async()=>{
@@ -20,9 +22,13 @@ function Product() {
         {
             product.map((item)=>(
                 <div key={item.id} className={Pro.box}>
-                <img src={item.thumbnail} alt="" style={{width:'400px',height:'300px'}} />
+                <img src={item.thumbnail} alt="" style={{width:'100%',height:'300px'}} />
                 <div className={Pro.details}>
                 <h1>{item.title}</h1>
+                <div className={Pro.footerbtn}>
+                  <Link to='/cart' className={Pro.cart}><FaShoppingCart style={{color:'white',padding:'0%',marginRight:'3%',marginBottom:'0%'}} />Add To Cart</Link>
+                  <Link to='/buy' className={Pro.buy}>Buy Now</Link>
+                </div>
                 </div>
                 </div>
             ))
