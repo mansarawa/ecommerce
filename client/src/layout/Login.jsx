@@ -27,6 +27,7 @@ function Login() {
         console.log('success')
         localStorage.setItem('user',JSON.stringify(result.user))
         console.log(result.user)
+        toast.success('login success')
       } else {
         console.log('failed')
       }

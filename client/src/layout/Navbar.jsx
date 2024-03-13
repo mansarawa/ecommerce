@@ -46,7 +46,7 @@ function Navbar() {
               <ul className={Nav.ul} style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
                 <li className={Nav.li} ><Link to='/' className={Nav.item}>Home</Link></li>
                 <li className={Nav.li} style={{marginTop:'1%'}}><Link to='/' className={Nav.item}>Products</Link></li>
-                <li className={Nav.li} style={{marginTop:'2%'}}><Link to='/' style={{ backgroundColor: '#201a44', color: 'white', padding: '5px 15px 5px 15px', borderRadius: '20px' }} className={Nav.item}>Cart</Link></li>
+                <li className={Nav.li} style={{marginTop:'2%'}}><Link to='/cart' style={{ backgroundColor: '#201a44', color: 'white', padding: '5px 15px 5px 15px', borderRadius: '20px' }} className={Nav.item}>Cart</Link></li>
                 <li className={Nav.li} style={{marginTop:'1%'}}><Link to='/register' className={Nav.item}>Register</Link></li>
                 <li className={Nav.li} style={{marginTop:'1%'}}><Link to='/login' className={Nav.item}>Login</Link></li>
               </ul>
