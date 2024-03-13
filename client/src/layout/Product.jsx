@@ -17,6 +17,20 @@ function Product() {
       fetchData();
     }, [])
     
+    const handlecart=async(req,res)=>{
+      const res=await fetch('http://localhost:3000/cart',{
+        method:'post',
+        headers:{
+          'Content-Type':'application/josn'
+        },
+        body:JSON.stringify({
+          name:name,
+          photo:photo,
+          price:price,
+          userid:userid
+        })
+      })
+    }
   return (
     <div className={Pro.container}>
         {
@@ -26,7 +40,7 @@ function Product() {
                 <div className={Pro.details}>
                 <h1>{item.title}</h1>
                 <div className={Pro.footerbtn}>
-                  <Link to='/cart' className={Pro.cart}><FaShoppingCart style={{color:'white',padding:'0%',marginRight:'3%',marginBottom:'0%'}} />Add To Cart</Link>
+                  <Link to='' onClick={()=>handlecart(item.thumbnail)} className={Pro.cart}><FaShoppingCart style={{color:'white',padding:'0%',marginRight:'3%',marginBottom:'0%'}} />Add To Cart</Link>
                   <Link to='/buy' className={Pro.buy}>Buy Now</Link>
                 </div>
                 </div>
