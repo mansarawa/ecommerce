@@ -38,3 +38,14 @@
     padding-bottom: 2%;
     background-color:#201a44;
 }
+ @media screen and (max-width:600px) {
+    .container{
+        width: 100%;
+        
+    }
+    .box{
+        margin-top: 3%;
+        margin-left: 5%;
+        width: 90%;
+    }
+ }
