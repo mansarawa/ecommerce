@@ -37,6 +37,7 @@ export default  function Cart() {
             </div>
             <div className="content">
               <h3>{item.name}</h3>
+              <h3>{item.quantity}</h3>
               <h5>{item.price}</h5>
             </div>
           </div>

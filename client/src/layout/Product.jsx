@@ -4,6 +4,7 @@ import Pro from '../layout css/product.module.css'
 import { toast } from 'react-toastify';
 import { FaShoppingCart } from "react-icons/fa";
 function Product() {
+  const quantity=1;
     const user= JSON.parse(localStorage.getItem('user'))
     console.log(user)
     const userid=user._id
@@ -32,7 +33,8 @@ function Product() {
           name:name,
           photo:photo,
           price:price,
-          userid:userid
+          userid:userid,
+          quantity:quantity
         })
       })
       const result=await res.json();
