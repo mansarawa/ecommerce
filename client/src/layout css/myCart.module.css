@@ -6,12 +6,30 @@
     width: 90%;
     margin-left: 5%;
     display: flex;
+
     margin-top: 2%;
     flex-wrap: wrap;
     
 }
+.content{
+    margin-left: 10%;
+   width: 50%;
+}
+.qtbtn{
+    display: flex;
+    padding-bottom: 1%;
+}
+.reacticon{
+    cursor: pointer;
+}
 @media screen and(max-width:600px) {
     .box{
         flex-direction: row;
+    }
+    .content{
+        text-align: center;
+        width: 100%;
+        margin-left: 50%;
+        background-color: red;
     }
 }
