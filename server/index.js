@@ -8,7 +8,10 @@ import cartroute from './routes/cart.js';
 import fetchcart from './routes/fetchcart.js';
 const app=express();
 app.use(express.json())
-app.use(cors());
+app.use(cors({
+    origin:"*"
+}));
+
 app.use('/',signup)
 app.use('/',fetchcart)
 app.use('/',login);
