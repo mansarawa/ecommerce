@@ -51,7 +51,7 @@ function Product() {
         {
             product.map((item)=>(
                 <div key={item.id} className={Pro.box}>
-                <img src={item.thumbnail} alt="" style={{width:'100%',height:'300px'}} />
+                <img src={item.thumbnail} alt="" style={{maxWidth:'100%',maxHeight:'300px',minWidth:'100%',minHeight:'300px'}} />
                 <div className={Pro.details}>
                 <h1>{item.title}</h1>
                 <div className={Pro.footerbtn}>

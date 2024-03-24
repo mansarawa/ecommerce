@@ -14,10 +14,26 @@
 .content{
     margin-left: 10%;
    width: 50%;
+  
 }
 .qtbtn{
+    width: 100%;
     display: flex;
     padding-bottom: 1%;
+}
+.quantity{
+    margin:1% 2% 1% 2%;
+}
+.rem{
+    background-color: red;
+    border: none;
+    margin-top: 25%;
+    border-radius: 10px;
+    padding: 1%;
+    color: white;
+}
+.rem:hover{
+    cursor: pointer;
 }
 .reacticon{
     cursor: pointer;
@@ -26,10 +42,18 @@
     .box{
         flex-direction: row;
     }
+    .rem{
+        margin-top: 0%;
+    }
+    .quantity{
+        text-align: center;
+    }
     .content{
         text-align: center;
         width: 100%;
         margin-left: 50%;
+        justify-content: center;
+        align-items: center;
         background-color: red;
     }
 }
