@@ -2,7 +2,7 @@ import express from 'express';
 import Cart from '../models/Cart.js';
 
 async function cartcontroller(req, res) {
-    const { userid, name, quantity, price, photo } = req.body;
+    const { userid,itemprice, name, quantity, price, photo } = req.body;
 
     try {
         let cartItem = await Cart.findOne({ name: name });
@@ -13,6 +13,7 @@ async function cartcontroller(req, res) {
                 name: name,
                 userid: userid,
                 photo: photo,
+                itemprice:itemprice,
                 price: price,
                 quantity: quantity
             });

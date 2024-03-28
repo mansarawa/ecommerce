@@ -32,6 +32,7 @@ function Product() {
         body:JSON.stringify({
           name:name,
           photo:photo,
+          itemprice:price,
           price:price,
           userid:userid,
           quantity:quantity
@@ -56,7 +57,8 @@ function Product() {
                 <h1>{item.title}</h1>
                 <div className={Pro.footerbtn}>
                   <Link to='' onClick={()=>handlecart(item.thumbnail,item.price,item.title)} className={Pro.cart}><FaShoppingCart style={{color:'white',padding:'0%',marginRight:'3%',marginBottom:'0%'}} />Add To Cart</Link>
-                  <Link to='/buy' className={Pro.buy}>Buy Now</Link>
+                  <Link  to={{ pathname: '/buy', state: { price: item.price } }} // Pass price as state
+                className={Pro.buy}>Buy Now</Link>
                 </div>
                 </div>
                 </div>

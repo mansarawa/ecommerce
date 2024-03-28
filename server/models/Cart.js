@@ -4,6 +4,7 @@ const cartSchema=new Schema({
     name:String,
     quantity:Number,
     price:Number,
+    itemprice:Number,
     userid:String,
     photo:String,
     createdAt: {
