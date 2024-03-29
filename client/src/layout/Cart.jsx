@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { FaCircleMinus } from "react-icons/fa6";
 import { IoMdAddCircle } from "react-icons/io";
-import { toast } from 'react-toastify'; // Import toast notification library
+import { FaLongArrowAltRight } from "react-icons/fa";
+import { toast } from 'react-toastify'; 
 import myCart from '../layout css/myCart.module.css';
 
 export default function Cart() {
 
   const [data, setData] = useState([]);
-  const [price, setPrice] = useState(); // Initialize quantity with a default value
+  const [grandtotal, setGrandTotal] = useState(); 
+  const[totalitem,setTotalitem]=useState();
   const user = JSON.parse(localStorage.getItem('user'));
   const userid = user._id;
 
@@ -22,10 +24,11 @@ export default function Cart() {
       })
     });
     const result = await res.json();
-    console.log(result);
+    console.log(result.cartitem);
     if (result.success) {
       localStorage.setItem('cartitem', JSON.stringify(result.cartitem));
       setData(result.cartitem);
+      calculateTotal(result.cartitem);
     }
   }
 
@@ -37,8 +40,8 @@ export default function Cart() {
     const newq = item.quantity + 1;
     // setPrice(item.price)
     const cartid = item._id;
-    const newprice = item.price * newq // Calculate the new price based on the updated quantity1
-    console.log(newprice);
+    const newprice = item.price * newq 
+   
     await incdata(cartid, newq, newprice);
   }
   
@@ -48,16 +51,16 @@ export default function Cart() {
     const setprice=item.price - item.price
     const itemprice=item.itemprice - item.price
 
-    await incdata(cartid, newq,itemprice); // Pass cartid and newq to incdata function
+    await incdata(cartid, newq,itemprice);
   }
-  const incdata = async (cartid, newq,itemprice) => { // Define incdata function before using it
+  const incdata = async (cartid, newq,itemprice) => { 
     const res = await fetch('http://localhost:3000/increment', {
       method: 'put',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        quantity: newq, // Use newq directly here
+        quantity: newq,
         _id: cartid,
         itemprice:itemprice,
     
@@ -82,7 +85,18 @@ export default function Cart() {
     }
   }
 
-
+  const calculateTotal=async(cartitem)=>{
+    let total=0;
+    cartitem.forEach(item => {
+      total=total+item.itemprice
+    });
+    setGrandTotal(total)
+    let totalitem=0
+    cartitem.forEach(item => {
+      totalitem=totalitem+1
+    });
+    setTotalitem(totalitem)
+  }
   return (
     <div className={myCart.container}>
       {data.map((item) => (
@@ -97,12 +111,30 @@ export default function Cart() {
               <h2 className={myCart.quantity}>{item.quantity}</h2>
               <IoMdAddCircle size={30} className={myCart.reacticon} onClick={() => handleadd(item)} />
             </div>
-            <h2>{item.itemprice}</h2>
+            <h2>₹{item.itemprice}</h2>
            
             <button key={item._id} className={myCart.rem} onClick={() => handleremove(item._id)} >Remove</button>
           </div>
         </div>
       ))}
+      <div className={myCart.grandtotal}>
+        <div className={myCart.total}>
+          <h3>Price ({totalitem} item)</h3>
+          <h3>₹{grandtotal}</h3>
+        </div>
+       
+        <div className={myCart.total}>
+        <h3>Delivery Charges</h3>
+        <h3>Free</h3>
+        </div>
+        <div className={myCart.total}>
+        <h2>Total Amount</h2>
+        <h2>₹{grandtotal}</h2>
+        </div>
+        <div className={myCart.nextcl}>
+        <button className={myCart.next}>Next <FaLongArrowAltRight color='white'/></button>
+        </div>
+      </div>
     </div>
   );
 }
