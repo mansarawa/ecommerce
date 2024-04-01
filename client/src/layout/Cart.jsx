@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useRef } from 'react';
 import { FaCircleMinus } from "react-icons/fa6";
+import ClickAwayListener from 'react-click-away-listener';
+
 import { IoMdAddCircle } from "react-icons/io";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { toast } from 'react-toastify'; 
 import myCart from '../layout css/myCart.module.css';
+import { Link } from 'react-router-dom';
 
 export default function Cart() {
-
+  const [showmodal, setShowmodal] = useState(false)
   const [data, setData] = useState([]);
   const [grandtotal, setGrandTotal] = useState(); 
   const[totalitem,setTotalitem]=useState();
   const user = JSON.parse(localStorage.getItem('user'));
   const userid = user._id;
-
+  const ref=useRef(null)
   const fetchdata = async () => {
     const res = await fetch('http://localhost:3000/mycart', {
       method: 'post',
@@ -97,6 +100,14 @@ export default function Cart() {
     });
     setTotalitem(totalitem)
   }
+  const togglemodal=()=>{
+    setShowmodal(!showmodal)
+  }
+ const handlefinsh=()=>{
+  toast.success('Your order has been placed')
+  console.log("hello")
+ }
+ 
   return (
     <div className={myCart.container}>
       {data.map((item) => (
@@ -132,8 +143,32 @@ export default function Cart() {
         <h2>₹{grandtotal}</h2>
         </div>
         <div className={myCart.nextcl}>
-        <button className={myCart.next}>Next <FaLongArrowAltRight color='white'/></button>
+        <button className={myCart.next} onClick={togglemodal}>{showmodal?'Cancel':'Next'} <FaLongArrowAltRight color='white'/></button>
         </div>
+       <ClickAwayListener onClickAway={()=>{ setShowmodal(!showmodal)}}>
+        <div>
+        {showmodal&&<div ref={ref} className={myCart.modal}>
+          <form className={myCart.modalform} >
+            <h3>Billing Details</h3>
+            Name:
+            <input type="text" name="" id="" required/>
+            Phone number:
+            <input type="number" name="" id="" maxLength={10} required/>
+            Email:
+            <input type="email" name="" id="" />
+            Postel Code:
+            <input type="number" name="" id="" required/>
+            House number:
+            <input type="number" name="" id="" required/>
+            Colony:
+            <input type="text" name="" id="" required/>
+            City:
+            <input type="text" name="" id="" required/>
+            <Link to={'/profile'} className={myCart.finish} onClick={handlefinsh}>Finish</Link>
+          </form>
+        </div>}
+        </div>
+        </ClickAwayListener>
       </div>
     </div>
   );

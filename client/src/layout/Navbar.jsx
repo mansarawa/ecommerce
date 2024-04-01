@@ -14,7 +14,8 @@ function Navbar() {
   }
   const handlelogout=async()=>{
     localStorage.clear();
-    // navigate('/login')
+    toast.error('logout successfull')
+    navigate('/login')
   }
 
   return (
@@ -28,9 +29,9 @@ function Navbar() {
           <ul className={Nav.ul}>
             <li className={Nav.li}><Link to='/' className={Nav.item}>Home</Link></li>
             <li className={Nav.li}><Link to='/' className={Nav.item}>Products</Link></li>
-            <li className={Nav.li}><Link to='/cart' style={{ backgroundColor: '#201a44', color: 'white', padding: '5px 15px 5px 15px', borderRadius: '20px' }} className={Nav.item}>Cart</Link></li>
+            {user&&<li className={Nav.li}><Link to='/cart' style={{ backgroundColor: '#201a44', color: 'white', padding: '5px 15px 5px 15px', borderRadius: '20px' }} className={Nav.item}>Cart</Link></li>}
             {user?<li className={Nav.li}><Link to='/profile' className={Nav.item}>Account</Link></li>: <li className={Nav.li}><Link to='/register' className={Nav.item}>Register</Link></li>}
-            {user?<li className={Nav.li}><Link to='' onClick={handlelogout} className={Nav.item}>Logout</Link></li>:<li className={Nav.li}><Link to='/login' className={Nav.item}>Login</Link></li>}
+            {user?<li className={Nav.li}><Link to='/login' onClick={handlelogout} className={Nav.item}>Logout</Link></li>:<li className={Nav.li}><Link to='/login' className={Nav.item}>Login</Link></li>}
           </ul>
           </div>
           
