@@ -103,10 +103,7 @@ export default function Cart() {
   const togglemodal=()=>{
     setShowmodal(!showmodal)
   }
- const handlefinsh=()=>{
-  toast.success('Your order has been placed')
-  console.log("hello")
- }
+ 
  
   return (
     <div className={myCart.container}>
@@ -143,32 +140,9 @@ export default function Cart() {
         <h2>₹{grandtotal}</h2>
         </div>
         <div className={myCart.nextcl}>
-        <button className={myCart.next} onClick={togglemodal}>{showmodal?'Cancel':'Next'} <FaLongArrowAltRight color='white'/></button>
-        </div>
-       <ClickAwayListener onClickAway={()=>{ setShowmodal(!showmodal)}}>
-        <div>
-        {showmodal&&<div ref={ref} className={myCart.modal}>
-          <form className={myCart.modalform} >
-            <h3>Billing Details</h3>
-            Name:
-            <input type="text" name="" id="" required/>
-            Phone number:
-            <input type="number" name="" id="" maxLength={10} required/>
-            Email:
-            <input type="email" name="" id="" />
-            Postel Code:
-            <input type="number" name="" id="" required/>
-            House number:
-            <input type="number" name="" id="" required/>
-            Colony:
-            <input type="text" name="" id="" required/>
-            City:
-            <input type="text" name="" id="" required/>
-            <Link to={'/profile'} className={myCart.finish} onClick={handlefinsh}>Finish</Link>
-          </form>
-        </div>}
-        </div>
-        </ClickAwayListener>
+        <Link to={'/billing'} className={myCart.next} onClick={togglemodal}>
+          Next <FaLongArrowAltRight color='white'/></Link>
+        </div>        
       </div>
     </div>
   );
