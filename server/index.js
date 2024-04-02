@@ -9,6 +9,7 @@ import fetchcart from './routes/fetchcart.js';
 import removeitem from './routes/removeitem.js';
 import inc from './routes/incquantity.js';
 import order from './routes/order.js';
+import bill from './routes/billing.js';
 const app=express();
 app.use(express.json())
 app.use(cors({
@@ -18,6 +19,7 @@ app.use(cors({
 app.use('/',signup)
 app.use('/',fetchcart)
 app.use('/',login);
+app.use('/',bill)
 app.use('/',cartroute)
 app.use('/',inc)
 app.use('/',order)

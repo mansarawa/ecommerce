@@ -52,11 +52,11 @@ function Login() {
         <div className={loGin.form}>
         <div className={loGin.content}>
           Email:
-        <input type="email" value={email} className={loGin.inp}  onChange={(e) => setEmail(e.target.value)} />
+        <input type="email" value={email} className={loGin.inp}  onChange={(e) => setEmail(e.target.value)} required />
         </div>
         <div className={loGin.content}>
           Password:
-        <input type="password" value={password}  className={loGin.inp} onChange={(e) => setPassword(e.target.value)} />
+        <input type="password" value={password}  className={loGin.inp} onChange={(e) => setPassword(e.target.value)} required/>
         </div>
         <div className={loGin.content}>
         <button type="submit" style={{textAlign:'center',marginLeft:'35%', padding: '10px 15px 10px 15px',marginBottom:'5%',fontSize:'18px' ,border:'none',color:'white',backgroundColor:'#201a44',borderRadius:'10px',marginTop:'5px'}}>Login</button> {/* Change type to "submit" */}

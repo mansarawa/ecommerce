@@ -9,7 +9,7 @@ export default function Profile() {
 	return (
 		<div className={Account.container}>
 			<h1>Hello {username}</h1>
-			<h2 style={{margin:'2%',paddingBottom:'2%',width:'100%',textAlign:'center',borderBottom:'2px dashed #201a44'}}>Your Activity</h2>
+			<h2 className={Account.headingtwo} >Your Activity</h2>
 			<div className={Account.activity}>
 			
 				<div className={Account.item}>
