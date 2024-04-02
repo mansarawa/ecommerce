@@ -1,7 +1,7 @@
 import React, { useEffect, useState,useRef } from 'react';
 import { FaCircleMinus } from "react-icons/fa6";
 import ClickAwayListener from 'react-click-away-listener';
-
+import { useCart } from './CartContext'
 import { IoMdAddCircle } from "react-icons/io";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { toast } from 'react-toastify'; 
@@ -11,11 +11,13 @@ import { Link } from 'react-router-dom';
 export default function Cart() {
   const [showmodal, setShowmodal] = useState(false)
   const [data, setData] = useState([]);
+  const [mydata,setMyData]=useState();
   const [grandtotal, setGrandTotal] = useState(); 
   const[totalitem,setTotalitem]=useState();
   const user = JSON.parse(localStorage.getItem('user'));
+  const { updateCartValue } = useCart()
   const userid = user._id;
-  const ref=useRef(null)
+  const { cartValue } = useCart();
   const fetchdata = async () => {
     const res = await fetch('http://localhost:3000/mycart', {
       method: 'post',
@@ -32,12 +34,44 @@ export default function Cart() {
       localStorage.setItem('cartitem', JSON.stringify(result.cartitem));
       setData(result.cartitem);
       calculateTotal(result.cartitem);
+      console.log(cartValue)
     }
   }
 
   useEffect(() => {
     fetchdata();
   }, []);
+  updateCartValue(1);
+  if(cartValue==1)
+  {
+    const order = async () => {
+   
+      const orderDetails =await  data.map(item => ({
+        name: item.name,
+        photo: item.photo,
+        quantity: item.quantity,
+        itemprice: item.itemprice
+      }));
+    
+      const res = await fetch('http://localhost:3000/order', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          userid: userid,
+          orderDetails: orderDetails
+        })
+      });
+    
+      const result = await res.json();
+      if (result.success) {
+        console.log("success");
+      }
+    };
+    
+    order();
+  }
 
   const handleadd = async (item) => {
     const newq = item.quantity + 1;

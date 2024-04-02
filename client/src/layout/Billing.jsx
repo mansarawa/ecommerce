@@ -1,13 +1,19 @@
 import React from 'react'
 import bIlling from '../layout css/billing.module.css'
-import { Link } from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
+import { useCart } from '../layout/CartContext';
 export default function Billing() {
-    const handlefinsh=()=>{
-        toast.success('Your order has been placed')
-        console.log("hello")
-       }
+  
+  const { updateCartValue } = useCart();
+  const navigate=useNavigate()
+  const handlefinsh=()=>{
+    navigate('/profile')
+    let newval = 1;
+    updateCartValue(newval);
+  }
   return (
-   <div  className={bIlling.modal} >
+    <div>
+       <div  className={bIlling.modal} >
     <form className={bIlling.modalform} >
       <h3>Billing Details</h3>
       Name:
@@ -24,9 +30,9 @@ export default function Billing() {
       <input type="text" name="" id="" required/>
       City:
       <input type="text" name="" id="" required/>
-      <Link to='/profile' className={bIlling.finish} onClick={handlefinsh}>Finish</Link>
+       <Link to='/profile' className={bIlling.finish} onClick={handlefinsh}>Finish</Link>
     </form>
   </div>
+   </div>
   )
 }
-
