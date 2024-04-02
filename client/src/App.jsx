@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Billing from './layout/Billing'
 import Product from './layout/Product'
 import { CartProvider } from './layout/CartContext'; 
+import Buy from './layout/Buy'
 export default function App() {
   let val=0;
   return (
@@ -25,8 +26,9 @@ export default function App() {
         <Route path='/' element={<Homeslider/>}/>
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/profile' element={<Profile/>}/>
-        <Route path='/billing' element={<Billing val={val}/>} />
+        <Route path='/billing' element={<Billing />} />
         <Route path='/product' element={<Product/>}/>
+        <Route path='/buy/:id/:userid/:name/:price' element={<Buy/>}/>
         </Routes>
         <ToastContainer />
       </BrowserRouter>

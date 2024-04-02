@@ -84,4 +84,7 @@
         align-items: center;
         background-color: red;
     }
+    .middle{
+        flex-direction: column;
+    }
 }

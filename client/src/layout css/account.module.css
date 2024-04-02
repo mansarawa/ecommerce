@@ -1,0 +1,34 @@
+.container{
+    font-family:sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #201a44;
+}
+
+.activity{
+    width: 80%;
+    margin-left: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.item{
+    width: 20%;
+    display: flex;
+    margin-top: 2%;
+    border-radius: 10px;
+    height: 150px;
+    margin-right: 20%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #201a44;
+}
+.item:hover{
+    background-color: #201a44;
+    color: white;
+    cursor: pointer;
+}

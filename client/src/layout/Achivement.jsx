@@ -11,7 +11,7 @@ function Achivement() {
 
         <div className={Achi.heading}>
             <GrAchievement size={40} style={{color:'white',marginRight:'10px'}}/>
-            <h1>Achivement</h1>
+            <h1>Milestones</h1>
         </div>
         <div className={Achi.box}>
             <div className={Achi.item}>
@@ -27,7 +27,7 @@ function Achivement() {
                 <h2>No Cos EMI</h2>
             </div>
             <div className={Achi.item}>
-                <AiFillSafetyCertificate style={{color:'#201a44'}} size={80}/>
+                <AiFillSafetyCertificate style={{color:'#201a44'}} size={40}/>
                 <h2>Certified</h2>
             </div>
         </div>
