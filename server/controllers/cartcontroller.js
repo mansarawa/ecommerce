@@ -6,7 +6,7 @@ async function cartcontroller(req, res) {
 
     try {
         let cartItem = await Cart.findOne({ name: name });
-
+        
         if (!cartItem) {
             // If the item doesn't exist in the cart, create a new cart item
             cartItem = new Cart({
@@ -15,7 +15,8 @@ async function cartcontroller(req, res) {
                 photo: photo,
                 itemprice:itemprice,
                 price: price,
-                quantity: quantity
+                quantity: quantity,
+                
             });
 
             await cartItem.save();

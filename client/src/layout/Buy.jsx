@@ -32,12 +32,14 @@ export default  function Buy() {
         const result = await res.json();
         if (result.success) {
           toast.success('Added To Cart')
-          
-          
+          console.log(result.bill)
+         // localStorage.setItem('cartitem', JSON.stringify(result.cartitem));
           router('/billing')
         }
       }
-  
+  else{
+    router('/login')
+  }
     
   }
   return (

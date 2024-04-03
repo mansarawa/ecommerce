@@ -15,7 +15,7 @@ export default function Billing() {
 
  
   const cartData=JSON.parse(localStorage.getItem('cartitem'))
-  console.log(cartData)
+ 
   const productid=[];
   cartData.forEach(item => {
      productid.push(item._id);
@@ -62,7 +62,15 @@ export default function Billing() {
       localStorage.setItem('bill',JSON.stringify(result.bill))
       console.log(result.bill)
     }
-    
+    const del=await fetch('http://localhost:3000/deletecart',{
+      method:'put',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+        userid:userid
+      })
+    })
    
   }
   let a=0;

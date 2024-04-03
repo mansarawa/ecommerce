@@ -18,7 +18,7 @@ export default function Cart() {
 
   const userid = user._id;
   const bill = JSON.parse(localStorage.getItem('bill'))
-  console.log(bill.productid)
+  
   const fetchdata = async () => {
     const res = await fetch('http://localhost:3000/mycart', {
       method: 'post',
@@ -35,7 +35,7 @@ export default function Cart() {
       localStorage.setItem('cartitem', JSON.stringify(result.cartitem));
       setData(result.cartitem);
       calculateTotal(result.cartitem);
-      
+      //console.log(result.cartitem)
     }
   }
 
@@ -150,6 +150,7 @@ export default function Cart() {
             Next <FaLongArrowAltRight color='white' /></Link>
         </div>
       </div>
+      
     </div>
   );
 }

@@ -10,6 +10,7 @@ import removeitem from './routes/removeitem.js';
 import inc from './routes/incquantity.js';
 import order from './routes/order.js';
 import bill from './routes/billing.js';
+import deletecart from './routes/deletecar.js';
 const app=express();
 app.use(express.json())
 app.use(cors({
@@ -22,6 +23,7 @@ app.use('/',login);
 app.use('/',bill)
 app.use('/',cartroute)
 app.use('/',inc)
+app.use('/',deletecart)
 app.use('/',order)
 app.use('/',removeitem)
 await ConnectToDb();

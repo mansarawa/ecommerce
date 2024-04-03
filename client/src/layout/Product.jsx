@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Pro from '../layout css/product.module.css'
 import { toast } from 'react-toastify';
-import watch from '../assets/watch.png'
+import watch from '../assets/watch.png';
+
 import { FaShoppingCart } from "react-icons/fa";
 function Product() {
   const navigate = useNavigate();
@@ -47,6 +48,7 @@ function Product() {
       if (result.success) {
         toast.success('Added To Cart')
         console.log(done)
+        
       }
     }
     else {
@@ -64,7 +66,8 @@ function Product() {
 
       {
         product.map((item, index) => (
-          <>{index<12?
+          <>
+          {index<12?
             <div key={item.id} className={Pro.box}>
               <img src={item.thumbnail} alt="" style={{ maxWidth: '100%', maxHeight: '300px', minWidth: '100%', minHeight: '300px' }} />
               <div className={Pro.details}>
