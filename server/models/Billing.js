@@ -8,6 +8,10 @@ const billSchema=new Schema({
     colony:String,
     city:String,
     email:String,
+    userid:String,
+    productid:{
+        type:Array
+    },
      createdAt: {
         type: Date,
         default: Date.now

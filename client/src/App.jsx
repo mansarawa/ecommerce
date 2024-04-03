@@ -11,13 +11,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Billing from './layout/Billing'
 import Product from './layout/Product'
-import { CartProvider } from './layout/CartContext'; 
+
 import Buy from './layout/Buy'
 export default function App() {
   let val=0;
   return (
     <div>
-<CartProvider>
+
       <BrowserRouter>
       <Navbar/>
         <Routes>
@@ -32,7 +32,7 @@ export default function App() {
         </Routes>
         <ToastContainer />
       </BrowserRouter>
-      </CartProvider>
+      
     </div>
   )
 }

@@ -64,7 +64,7 @@ function Product() {
 
       {
         product.map((item, index) => (
-          <>
+          <>{index<12?
             <div key={item.id} className={Pro.box}>
               <img src={item.thumbnail} alt="" style={{ maxWidth: '100%', maxHeight: '300px', minWidth: '100%', minHeight: '300px' }} />
               <div className={Pro.details}>
@@ -79,7 +79,7 @@ function Product() {
                 <Link to={user ? '' : '/login'} onClick={() => handlecart(item.thumbnail, item.price, item.title)} className={Pro.cart}><FaShoppingCart style={{ color: 'white', padding: '0%', marginRight: '3%', marginBottom: '0%' }} />Add To Cart</Link>
                 <button className={Pro.buy} onClick={() => handlebuy(item.id, user._id, item.title, item.price,item.thumbnail)}>Buy Now</button>
               </div>
-            </div>
+            </div>:''}
 
             {(index + 1) === 6 && (
               <div className={Pro.middle}>
@@ -92,6 +92,7 @@ function Product() {
                 </div>
               </div>
             )}
+           
           </>
         ))
       }

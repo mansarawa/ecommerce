@@ -1,23 +1,24 @@
-import React, { useEffect, useState,useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { FaCircleMinus } from "react-icons/fa6";
 import ClickAwayListener from 'react-click-away-listener';
-import { useCart } from './CartContext'
+
 import { IoMdAddCircle } from "react-icons/io";
 import { FaLongArrowAltRight } from "react-icons/fa";
-import { toast } from 'react-toastify'; 
+import { toast } from 'react-toastify';
 import myCart from '../layout css/myCart.module.css';
 import { Link } from 'react-router-dom';
 
 export default function Cart() {
   const [showmodal, setShowmodal] = useState(false)
   const [data, setData] = useState([]);
-  const [mydata,setMyData]=useState();
-  const [grandtotal, setGrandTotal] = useState(); 
-  const[totalitem,setTotalitem]=useState();
+  const [mydata, setMyData] = useState();
+  const [grandtotal, setGrandTotal] = useState();
+  const [totalitem, setTotalitem] = useState();
   const user = JSON.parse(localStorage.getItem('user'));
-  const { updateCartValue } = useCart()
+
   const userid = user._id;
-  const { cartValue } = useCart();
+  const bill = JSON.parse(localStorage.getItem('bill'))
+  console.log(bill.productid)
   const fetchdata = async () => {
     const res = await fetch('http://localhost:3000/mycart', {
       method: 'post',
@@ -34,63 +35,34 @@ export default function Cart() {
       localStorage.setItem('cartitem', JSON.stringify(result.cartitem));
       setData(result.cartitem);
       calculateTotal(result.cartitem);
-      console.log(cartValue)
+      
     }
   }
 
   useEffect(() => {
     fetchdata();
   }, []);
-  updateCartValue(1);
-  if(cartValue==1)
-  {
-    const order = async () => {
-   
-      const orderDetails =await  data.map(item => ({
-        name: item.name,
-        photo: item.photo,
-        quantity: item.quantity,
-        itemprice: item.itemprice
-      }));
-    
-      const res = await fetch('http://localhost:3000/order', {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          userid: userid,
-          orderDetails: orderDetails
-        })
-      });
-    
-      const result = await res.json();
-      if (result.success) {
-        console.log("success");
-      }
-    };
-    
-    order();
-  }
+
+
 
   const handleadd = async (item) => {
     const newq = item.quantity + 1;
     // setPrice(item.price)
     const cartid = item._id;
-    const newprice = item.price * newq 
-   
+    const newprice = item.price * newq
+
     await incdata(cartid, newq, newprice);
   }
-  
+
   const handlesub = async (item) => {
     const newq = item.quantity - 1;
     const cartid = item._id;
-    const setprice=item.price - item.price
-    const itemprice=item.itemprice - item.price
+    const setprice = item.price - item.price
+    const itemprice = item.itemprice - item.price
 
-    await incdata(cartid, newq,itemprice);
+    await incdata(cartid, newq, itemprice);
   }
-  const incdata = async (cartid, newq,itemprice) => { 
+  const incdata = async (cartid, newq, itemprice) => {
     const res = await fetch('http://localhost:3000/increment', {
       method: 'put',
       headers: {
@@ -99,8 +71,8 @@ export default function Cart() {
       body: JSON.stringify({
         quantity: newq,
         _id: cartid,
-        itemprice:itemprice,
-    
+        itemprice: itemprice,
+
       })
     });
     fetchdata();
@@ -122,23 +94,23 @@ export default function Cart() {
     }
   }
 
-  const calculateTotal=async(cartitem)=>{
-    let total=0;
+  const calculateTotal = async (cartitem) => {
+    let total = 0;
     cartitem.forEach(item => {
-      total=total+item.itemprice
+      total = total + item.itemprice
     });
     setGrandTotal(total)
-    let totalitem=0
+    let totalitem = 0
     cartitem.forEach(item => {
-      totalitem=totalitem+1
+      totalitem = totalitem + 1
     });
     setTotalitem(totalitem)
   }
-  const togglemodal=()=>{
+  const togglemodal = () => {
     setShowmodal(!showmodal)
   }
- 
- 
+
+
   return (
     <div className={myCart.container}>
       {data.map((item) => (
@@ -149,12 +121,12 @@ export default function Cart() {
           <div className={myCart.content}>
             <h1>{item.name}</h1>
             <div className={myCart.qtbtn}>
-              <FaCircleMinus size={30} className={myCart.reacticon} style={{ cursor: item.quantity === 1 ? "not-allowed" : "pointer" }} onClick={() => item.quantity >1 && handlesub(item)}/>
+              <FaCircleMinus size={30} className={myCart.reacticon} style={{ cursor: item.quantity === 1 ? "not-allowed" : "pointer" }} onClick={() => item.quantity > 1 && handlesub(item)} />
               <h2 className={myCart.quantity}>{item.quantity}</h2>
               <IoMdAddCircle size={30} className={myCart.reacticon} onClick={() => handleadd(item)} />
             </div>
             <h2>₹{item.itemprice}</h2>
-           
+
             <button key={item._id} className={myCart.rem} onClick={() => handleremove(item._id)} >Remove</button>
           </div>
         </div>
@@ -164,19 +136,19 @@ export default function Cart() {
           <h3>Price ({totalitem} item)</h3>
           <h3>₹{grandtotal}</h3>
         </div>
-       
+
         <div className={myCart.total}>
-        <h3>Delivery Charges</h3>
-        <h3>Free</h3>
+          <h3>Delivery Charges</h3>
+          <h3>Free</h3>
         </div>
         <div className={myCart.total}>
-        <h2>Total Amount</h2>
-        <h2>₹{grandtotal}</h2>
+          <h2>Total Amount</h2>
+          <h2>₹{grandtotal}</h2>
         </div>
         <div className={myCart.nextcl}>
-        <Link to={'/billing'} className={myCart.next} onClick={togglemodal}>
-          Next <FaLongArrowAltRight color='white'/></Link>
-        </div>        
+          <Link to={'/billing'} className={myCart.next} onClick={togglemodal}>
+            Next <FaLongArrowAltRight color='white' /></Link>
+        </div>
       </div>
     </div>
   );

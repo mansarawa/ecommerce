@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import bIlling from '../layout css/billing.module.css'
 import {Link, useNavigate} from 'react-router-dom'
-import { useCart } from '../layout/CartContext';
+
+import rename from '../assets/rename.gif'
 import { toast } from 'react-toastify';
 export default function Billing() {
   const[name,setName]=useState();
@@ -11,8 +12,20 @@ export default function Billing() {
   const[colony,setColony]=useState();
   const[city,setCity]=useState();
   const[postel,setPostel]=useState();
-  const { updateCartValue } = useCart();
+
+ 
+  const cartData=JSON.parse(localStorage.getItem('cartitem'))
+  console.log(cartData)
+  const productid=[];
+  cartData.forEach(item => {
+     productid.push(item._id);
+    console.log(productid); 
+  });
+  
   const navigate=useNavigate()
+  const [gif,setGif]=useState(false)
+  const user=JSON.parse(localStorage.getItem('user'))
+  const userid=user._id
   const handlefinsh= async()=>{
     if (!name || !phone || !email || !house || !colony || !city || !postel) {
       
@@ -20,8 +33,7 @@ export default function Billing() {
       return;
     }
 
-    let newval = 1;
-    updateCartValue(newval);
+   
     const res=await fetch('http://localhost:3000/billing',{
       method:'post',
       headers:{
@@ -34,14 +46,21 @@ export default function Billing() {
         postel:postel,
         house:house,
         city:city,
-        colony:colony
+        colony:colony,
+        userid:userid,
+        productid:productid
       })
 
     })
     const result=await res.json();
     if(result.success)
     {
-      navigate('/profile')
+      setGif(rename)
+      setTimeout(() => {
+        navigate('/profile')
+      }, 4000);
+      localStorage.setItem('bill',JSON.stringify(result.bill))
+      console.log(result.bill)
     }
     
    
@@ -68,6 +87,7 @@ export default function Billing() {
       <input type="text" value={city} onChange={(e)=>setCity(e.target.value)}   required/>
        <button type='button' className={bIlling.finish} onClick={handlefinsh}>Finish</button>
     </form>
+    <img src={gif} alt="" style={{width:'30%',color:'#201a44',marginLeft:'35%',marginTop:'-100%',zIndex:'9999'}} srcset="" />
   </div>
    </div>
   )

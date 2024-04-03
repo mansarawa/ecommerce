@@ -54,7 +54,7 @@ function Register() {
               <input type="password" className={signup.inp} value={password} onChange={(e)=>setPassword(e.target.value)}  name="" id="" />
             </div>
             <div className={signup.content}>
-            <button type="submit"  style={{textAlign:'center',marginLeft:'30%',marginBottom:'5%', padding: '10px 15px 10px 15px',fontSize:'18px' ,border:'none',color:'white',backgroundColor:'#201a44',borderRadius:'10px',marginTop:'5px'}} >Register</button>
+            <button type="submit"  style={{textAlign:'center',cursor:'pointer',marginLeft:'30%',marginBottom:'5%', padding: '10px 15px 10px 15px',fontSize:'18px' ,border:'none',color:'white',backgroundColor:'#201a44',borderRadius:'10px',marginTop:'5px'}} >Register</button>
             </div>
             <div className={signup.content}>
             <Link to='/login' style={{marginTop:'5%',width:'80%',marginLeft:'20%'}}>Already have an account?</Link>
