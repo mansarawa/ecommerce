@@ -15,12 +15,13 @@ export default function Billing() {
 
  
   const cartData=JSON.parse(localStorage.getItem('cartitem'))
- 
-  const productid=[];
-  cartData.forEach(item => {
-     productid.push(item._id);
-    console.log(productid); 
-  });
+ console.log(cartData)
+ const productid=[];
+ cartData.forEach(item => {
+    productid.push(item._id);
+   console.log(productid); 
+ });
+
   
   const navigate=useNavigate()
   const [gif,setGif]=useState(false)
@@ -31,9 +32,7 @@ export default function Billing() {
       
       toast.error('Please fill in all required fields.');
       return;
-    }
-
-   
+    } 
     const res=await fetch('http://localhost:3000/billing',{
       method:'post',
       headers:{
@@ -61,8 +60,69 @@ export default function Billing() {
       }, 4000);
       localStorage.setItem('bill',JSON.stringify(result.bill))
       console.log(result.bill)
+      const getcart=await fetch('http://localhost:3000/getcart',{
+        method:"put",
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+          userid:userid
+        })
+      })
+      const getresult=await getcart.json();
+      if(getresult.success)
+      {
+        const gets=getresult.cartData
+        
+        const opname=[];
+        gets.forEach(item => {
+           opname.push(item.name);
+           console.log("name",opname)
+        });
+        const oquantity=[];
+        gets.forEach(item => {
+           oquantity.push(item.quantity);
+           console.log("quantity",oquantity)      
+        });
+        const ouserid=[];
+        gets.forEach(item => {
+           ouserid.push(item._id);
+          console.log("userid",ouserid)
+        });
+        const ophoto=[];
+        gets.forEach(item => {
+           ophoto.push(item.photo);
+         console.log("photo",ophoto)
+        });
+        const oprice=[];
+        gets.forEach(item => {
+           oprice.push(item.itemprice);
+            console.log("price",oprice)
+        });
+       mixfunction();
+      }
+      
     }
-    const del=await fetch('http://localhost:3000/deletecart',{
+   
+  
+  }
+  let a=0;
+  const mixfunction=async()=>{
+    const order=await fetch('http://localhost:3000/order',{
+      method:'post',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+        name:opname,
+        itemprice:oprice,
+        quantity:oquantity,
+        userid:userid,
+        productid:productid,
+        photo:ophoto
+      })
+     })
+     const del=await fetch('http://localhost:3000/deletecart',{
       method:'put',
       headers:{
         'Content-Type':'application/json'
@@ -71,9 +131,7 @@ export default function Billing() {
         userid:userid
       })
     })
-   
   }
-  let a=0;
   return (
     <div>
        <div  className={bIlling.modal} >

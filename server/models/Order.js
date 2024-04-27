@@ -1,12 +1,14 @@
 import mongoose, { Schema } from 'mongoose'
 
 const orderSchema=new Schema({
-    orderDetails: [{
-        name: String,
-        quantity: Number,
-        itemprice: Number,
-        photo: String
-    }],
+   
+        name:[String],
+        quantity:[ Number],
+        itemprice: [Number],
+        productid:[String],
+        photo: [String],
+        userid:[String],
+   
     createdAt: {
         type: Date,
         default: Date.now

@@ -1,14 +1,15 @@
 import Order from "../models/Order.js";
 
 export default async function(req,res){
-    const {userid,name,itemprice,state,quantity,photo}=req.body;
+    const {ouserid,oname,oprice,productid,oquantity,ophoto}=req.body;
     const newOrder=await Order.create({
-        name:name,
-        photo:photo,
-        itemprice:itemprice,
-        quantity:quantity,
-        state:state,
-        userid:userid
+        name:oname,
+        photo:ophoto,
+        itemprice:oprice,
+        quantity:oquantity,
+        productid:productid,
+
+        userid:ouserid
     })
 
     await newOrder.save;
