@@ -16,7 +16,7 @@ import getcart from './routes/getcart.js';
 const app=express();
 app.use(express.json())
 app.use(cors({
-    origin:"*",
+    origin:"https://digishop-three.vercel.app",
     methods:['POST','GET'],
     credentials:true
 }));
