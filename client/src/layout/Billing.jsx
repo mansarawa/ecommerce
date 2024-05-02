@@ -108,7 +108,7 @@ export default function Billing() {
   }
   let a=0;
   const mixfunction=async()=>{
-    const order=await fetch('http://localhost:3000/order',{
+    const order=await fetch('https://ecommerce-neon-six.vercel.app/order',{
       method:'post',
       headers:{
         'Content-Type':'application/json'
@@ -122,7 +122,7 @@ export default function Billing() {
         photo:ophoto
       })
      })
-     const del=await fetch('http://localhost:3000/deletecart',{
+     const del=await fetch('https://ecommerce-neon-six.vercel.app/deletecart',{
       method:'put',
       headers:{
         'Content-Type':'application/json'
