@@ -11,11 +11,14 @@ import inc from './routes/incquantity.js';
 import order from './routes/order.js';
 import bill from './routes/billing.js';
 import deletecart from './routes/deletecar.js';
+
 import getcart from './routes/getcart.js';
 const app=express();
 app.use(express.json())
 app.use(cors({
-    origin:"*"
+    origin:"*",
+    methods:['POST','GET'],
+    credentials:true
 }));
 
 app.use('/',signup)

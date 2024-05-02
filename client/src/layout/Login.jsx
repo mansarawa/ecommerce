@@ -29,6 +29,8 @@ function Login() {
          navigate('/')
         console.log('success')
         localStorage.setItem('user',JSON.stringify(result.user))
+        localStorage.setItem('token',JSON.stringify(result.token))
+        console.log(result.token)
         console.log(result.user)
         toast.success('login success')
       }
