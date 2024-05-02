@@ -12,7 +12,7 @@ function Login() {
     e.preventDefault(); // Prevent default form submission
   
     try {    
-      const res = await fetch('http://localhost:3000/login', {
+      const res = await fetch('https://ecommerce-neon-six.vercel.app/login', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json'

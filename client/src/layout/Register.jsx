@@ -12,7 +12,7 @@ function Register() {
     e.preventDefault();
     try {
        
-    const res=await fetch('http://localhost:3000/signup',{
+    const res=await fetch('https://ecommerce-neon-six.vercel.app/signup',{
       method:'post',
       headers:{
         'Content-Type':'application/json'

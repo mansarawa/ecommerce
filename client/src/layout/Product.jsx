@@ -29,7 +29,7 @@ function Product() {
   const handlecart = async (photo, price, name) => {
     if (user) {
       const userid = user._id
-      const res = await fetch('http://localhost:3000/cart', {
+      const res = await fetch('https://ecommerce-neon-six.vercel.app/cart', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json'

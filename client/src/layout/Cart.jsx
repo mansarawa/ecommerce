@@ -20,7 +20,7 @@ export default function Cart() {
   const bill = JSON.parse(localStorage.getItem('bill'))
   
   const fetchdata = async () => {
-    const res = await fetch('http://localhost:3000/mycart', {
+    const res = await fetch('https://ecommerce-neon-six.vercel.app/mycart', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ export default function Cart() {
     await incdata(cartid, newq, itemprice);
   }
   const incdata = async (cartid, newq, itemprice) => {
-    const res = await fetch('http://localhost:3000/increment', {
+    const res = await fetch('https://ecommerce-neon-six.vercel.app/increment', {
       method: 'put',
       headers: {
         'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ export default function Cart() {
   }
 
   const handleremove = async (myid) => {
-    const res = await fetch('http://localhost:3000/removeitem', {
+    const res = await fetch('https://ecommerce-neon-six.vercel.app/removeitem', {
       method: 'put',
       headers: {
         'Content-Type': 'application/json'
