@@ -15,11 +15,7 @@ import deletecart from './routes/deletecar.js';
 import getcart from './routes/getcart.js';
 const app=express();
 app.use(express.json())
-app.use(cors({
-    origin:"*",
-    methods:['POST','GET'],
-    credentials:true
-}));
+app.use(cors());
 
 app.use('/',signup)
 app.use('/',fetchcart)
